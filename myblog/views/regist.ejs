@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="reg" onsubmit="return false;">
+    <div>用户名：<input type="text" name="uname" id="uname"></div>
+    <div>密 码：<input type="password" id="pwd1" name="pwd1"></div>
+    <div>确认密码：<input type="password" id="pwd2" name="pwd2"></div>
+    <div><input type="submit" id="btn"></div>
+</form>
+<script src="/javascripts/jquery-1.12.4.js"></script>
+<script>
+$(function () {
+
+  $('#btn').on('click',function () {
+      var name = $('#uname').val();
+      var p1 = $('#pwd1').val();
+      var p2 = $('#pwd2').val();
+      $.get('regist',{
+          name:name,
+          pwd:p1,
+          pwd2:p2
+      },function (data) {
+if(data=='pwd-error'){
+    $('#pwd2').after("<span>两次密码不一致</span>");
+}else{
+    $('#pwd2').after("<span>密码相同</span>");
+}},'text')
+  })
+})
+</script>
+</body>
+</html>
