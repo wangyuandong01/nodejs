@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/login',user.login);
 router.get('/reg',user.reg);
+router.post('/login',user.checkLogin);
 router.get('/regist',user.regist);
 router.post('/login', function(req, res, next) {
      var uname=req.body.uname;

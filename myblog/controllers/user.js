@@ -13,6 +13,37 @@ exports.regist = function (req,res) {
     var pwd2=req.query.pwd2;
     fn=function (results) {
         res.send(results);
-    }
+    };
     userModel.regist(uname,pwd,fn)
 };
+exports.checkLogin = function (req,res) {
+    var name=req.body.name;
+    var pwd = req.body.pwd;
+    userModel.getUserByNameAndPwd(name,pwd,function (results) {
+        if(results.length>0){
+           req.session.loginUser=results[0];
+           res.redirect('/');
+        }else{
+            res.redirect('login');
+        }
+    })
+        
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
